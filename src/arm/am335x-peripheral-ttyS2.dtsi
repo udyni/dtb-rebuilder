@@ -9,5 +9,13 @@
 &uart2 {
 	pinctrl-names = "default";
 
+	rs485-rts-delay = <0 0>; 
+
+	/* GPIO1 pin 17 for data direction */
+	rts-gpio = <&gpio1 17 GPIO_ACTIVE_HIGH>;
+
+	/* Enable RS-485 */
+	linux,rs485-enabled-at-boot-time;
+
 	status = "okay";
 };

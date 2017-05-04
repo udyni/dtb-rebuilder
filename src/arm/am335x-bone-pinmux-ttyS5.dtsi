@@ -39,6 +39,10 @@
 			BONE_P8_38 (PIN_INPUT_PULLUP | MUX_MODE4)
 			/* P8_37: lcd_data8.uart5_txd */
 			BONE_P8_37 (PIN_OUTPUT_PULLDOWN | MUX_MODE4)
+			 /* P8_31 uart5_ctsn */
+			BONE_P8_31 (PIN_INPUT_PULLUP | MUX_MODE6)
+			/* P8_32 uart5_rtsn */
+			BONE_P8_32 (PIN_OUTPUT_PULLUP | MUX_MODE6)
 		>;
 	};
 };

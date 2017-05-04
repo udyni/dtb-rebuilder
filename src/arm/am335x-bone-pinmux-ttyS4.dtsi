@@ -39,6 +39,10 @@
 			BONE_P9_11 (PIN_INPUT_PULLUP | MUX_MODE6)
 			/* P9_13: gpmc_wpn.uart4_txd_mux2  */
 			BONE_P9_13 (PIN_OUTPUT_PULLDOWN | MUX_MODE6)
+			/* P8_35 uart4_ctsn */
+			BONE_P8_35 (PIN_INPUT_PULLUP | MUX_MODE6)
+			/* P8_33 uart4_rtsn */
+			BONE_P8_33 (PIN_OUTPUT_PULLUP | MUX_MODE6)
 		>;
 	};
 };

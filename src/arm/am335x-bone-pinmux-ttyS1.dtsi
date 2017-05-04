@@ -39,6 +39,10 @@
 			BONE_P9_24 (PIN_OUTPUT_PULLDOWN | MUX_MODE0)
 			/* P9_26: uart1_rxd.uart1_rxd */
 			BONE_P9_26 (PIN_INPUT_PULLUP | MUX_MODE0)
+			/* P9_20 uart1_ctsn */ 
+			BONE_P9_20 (PIN_INPUT_PULLUP | MUX_MODE0)
+			/* P9_19 uart1_rtsn */ 
+			BONE_P9_19 (PIN_OUTPUT_PULLUP | MUX_MODE0)
 		>;
 	};
 };
