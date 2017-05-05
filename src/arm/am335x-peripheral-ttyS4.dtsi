@@ -10,4 +10,13 @@
 	pinctrl-names = "default";
 
 	status = "okay";
+
+	rs485-rts-delay = <0 0>;
+	rs485-rts-active-high;
+
+	/* GPIO1 pin 16 for data direction */
+	rts-gpio = <&gpio1 16 GPIO_ACTIVE_HIGH>;
+
+	/* Enable RS-485 */
+	linux,rs485-enabled-at-boot-time;
 };

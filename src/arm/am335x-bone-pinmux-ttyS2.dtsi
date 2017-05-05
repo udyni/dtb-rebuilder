@@ -39,6 +39,7 @@
 			BONE_P9_21 (PIN_OUTPUT_PULLDOWN | MUX_MODE1)
 			/* P9_22: spi0_sclk.uart2_rxd */
 			BONE_P9_22 (PIN_INPUT_PULLUP | MUX_MODE1)
+			BONE_P9_23 (PIN_OUTPUT_PULLDOWN | MUX_MODE7)  /* P9_23 gpio1_17 */
 		>;
 	};
 };

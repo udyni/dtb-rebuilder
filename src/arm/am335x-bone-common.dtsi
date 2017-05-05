@@ -226,16 +226,16 @@
 		reg = <0x24>;
 	};
 
-	baseboard_eeprom: baseboard_eeprom@50 {
-		compatible = "at,24c256";
-		reg = <0x50>;
-
-		#address-cells = <1>;
-		#size-cells = <1>;
-		baseboard_data: baseboard_data@0 {
-			reg = <0 0x100>;
-		};
-	};
+// 	baseboard_eeprom: baseboard_eeprom@50 {
+// 		compatible = "at,24c256";
+// 		reg = <0x50>;
+// 
+// 		#address-cells = <1>;
+// 		#size-cells = <1>;
+// 		baseboard_data: baseboard_data@0 {
+// 			reg = <0 0x100>;
+// 		};
+// 	};
 };
 
 &i2c2 {
@@ -245,45 +245,46 @@
 	status = "okay";
 	clock-frequency = <100000>;
 
-	cape_eeprom0: cape_eeprom0@54 {
-		compatible = "at,24c256";
-		reg = <0x54>;
-		#address-cells = <1>;
-		#size-cells = <1>;
-		cape0_data: cape_data@0 {
-			reg = <0 0x100>;
-		};
-	};
-
-	cape_eeprom1: cape_eeprom1@55 {
-		compatible = "at,24c256";
-		reg = <0x55>;
-		#address-cells = <1>;
-		#size-cells = <1>;
-		cape1_data: cape_data@0 {
-			reg = <0 0x100>;
-		};
-	};
-
-	cape_eeprom2: cape_eeprom2@56 {
-		compatible = "at,24c256";
-		reg = <0x56>;
-		#address-cells = <1>;
-		#size-cells = <1>;
-		cape2_data: cape_data@0 {
-			reg = <0 0x100>;
-		};
-	};
-
-	cape_eeprom3: cape_eeprom3@57 {
-		compatible = "at,24c256";
-		reg = <0x57>;
-		#address-cells = <1>;
-		#size-cells = <1>;
-		cape3_data: cape_data@0 {
-			reg = <0 0x100>;
-		};
-	};
+// NOTE: disable the cape manager
+// 	cape_eeprom0: cape_eeprom0@54 {
+// 		compatible = "at,24c256";
+// 		reg = <0x54>;
+// 		#address-cells = <1>;
+// 		#size-cells = <1>;
+// 		cape0_data: cape_data@0 {
+// 			reg = <0 0x100>;
+// 		};
+// 	};
+// 
+// 	cape_eeprom1: cape_eeprom1@55 {
+// 		compatible = "at,24c256";
+// 		reg = <0x55>;
+// 		#address-cells = <1>;
+// 		#size-cells = <1>;
+// 		cape1_data: cape_data@0 {
+// 			reg = <0 0x100>;
+// 		};
+// 	};
+// 
+// 	cape_eeprom2: cape_eeprom2@56 {
+// 		compatible = "at,24c256";
+// 		reg = <0x56>;
+// 		#address-cells = <1>;
+// 		#size-cells = <1>;
+// 		cape2_data: cape_data@0 {
+// 			reg = <0 0x100>;
+// 		};
+// 	};
+// 
+// 	cape_eeprom3: cape_eeprom3@57 {
+// 		compatible = "at,24c256";
+// 		reg = <0x57>;
+// 		#address-cells = <1>;
+// 		#size-cells = <1>;
+// 		cape3_data: cape_data@0 {
+// 			reg = <0 0x100>;
+// 		};
+// 	};
 };
 
 
@@ -416,43 +417,45 @@
 	ti,scale-data-fw = "am335x-bone-scale-data.bin";
 };
 
-&pruss_soc_bus {
-	status = "okay";
+// NOTE: disable PRUs
+// &pruss_soc_bus {
+// 	status = "okay";
+// 
+// 	pruss: pruss@4a300000 {
+// 		status = "okay";
+// 
+// 		pru0: pru@4a334000 {
+// 			status = "okay";
+// 		};
+// 
+// 		pru1: pru@4a338000 {
+// 			status = "okay";
+// 		};
+// 	};
+// };
 
-	pruss: pruss@4a300000 {
-		status = "okay";
-
-		pru0: pru@4a334000 {
-			status = "okay";
-		};
-
-		pru1: pru@4a338000 {
-			status = "okay";
-		};
-	};
-};
-
+// NOTE: disable the cape manager
 /* the cape manager */
-/ {
-	bone_capemgr {
-		compatible = "ti,bone-capemgr";
-		status = "okay";
-
-		nvmem-cells = <&baseboard_data &cape0_data &cape1_data &cape2_data &cape3_data>;
-		nvmem-cell-names = "baseboard", "slot0", "slot1", "slot2", "slot3";
-		#slots = <4>;
-
-		/* map board revisions to compatible definitions */
-		baseboardmaps {
-			baseboard_beaglebone: board@0 {
-				board-name = "A335BONE";
-				compatible-name = "ti,beaglebone";
-			};
-
-			baseboard_beaglebone_black: board@1 {
-				board-name = "A335BNLT";
-				compatible-name = "ti,beaglebone-black";
-			};
-		};
-	};
-};
+// / {
+// 	bone_capemgr {
+// 		compatible = "ti,bone-capemgr";
+// 		status = "okay";
+// 
+// 		nvmem-cells = <&baseboard_data &cape0_data &cape1_data &cape2_data &cape3_data>;
+// 		nvmem-cell-names = "baseboard", "slot0", "slot1", "slot2", "slot3";
+// 		#slots = <4>;
+// 
+// 		/* map board revisions to compatible definitions */
+// 		baseboardmaps {
+// 			baseboard_beaglebone: board@0 {
+// 				board-name = "A335BONE";
+// 				compatible-name = "ti,beaglebone";
+// 			};
+// 
+// 			baseboard_beaglebone_black: board@1 {
+// 				board-name = "A335BNLT";
+// 				compatible-name = "ti,beaglebone-black";
+// 			};
+// 		};
+// 	};
+// };

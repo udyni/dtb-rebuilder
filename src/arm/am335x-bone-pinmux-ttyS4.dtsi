@@ -39,6 +39,7 @@
 			BONE_P9_11 (PIN_INPUT_PULLUP | MUX_MODE6)
 			/* P9_13: gpmc_wpn.uart4_txd_mux2  */
 			BONE_P9_13 (PIN_OUTPUT_PULLDOWN | MUX_MODE6)
+			BONE_P9_15 (PIN_OUTPUT_PULLDOWN | MUX_MODE7)  /* P9_15 gpio1_16 */
 		>;
 	};
 };
