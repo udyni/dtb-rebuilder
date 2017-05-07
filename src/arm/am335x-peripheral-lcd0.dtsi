@@ -1,0 +1,53 @@
+/*
+ * Copyright (C) 2012 Texas Instruments Incorporated - http://www.ti.com/
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ */
+
+#include <dt-bindings/board/am335x-bbw-bbb-base.h>
+
+&am33xx_pinmux {
+	lcd0_pins: lcd0_pins {
+		pinctrl-single,pins = <
+		BONE_P8_30 (PIN_OUTPUT | MUX_MODE7) /* lcd0 enable */
+		BONE_P8_28 (PIN_OUTPUT | MUX_MODE7) /* lcd0 rs */
+		0xb8 (PIN_OUTPUT | MUX_MODE7)       /* lcd0 d0 (lcd_data6) */
+		0xb0 (PIN_OUTPUT | MUX_MODE7)       /* lcd0 d1 (lcd_data4) */
+		0xa8 (PIN_OUTPUT | MUX_MODE7)       /* lcd0 d2 (lcd_data2) */
+		0xa0 (PIN_OUTPUT | MUX_MODE7)       /* lcd0 d3 (lcd_data0) */
+		0xa4 (PIN_OUTPUT | MUX_MODE7)       /* lcd0 d4 (lcd_data1) */
+		0xac (PIN_OUTPUT | MUX_MODE7)       /* lcd0 d5 (lcd_data3) */
+		0xb4 (PIN_OUTPUT | MUX_MODE7)       /* lcd0 d6 (lcd_data5) */
+		0xbc (PIN_OUTPUT | MUX_MODE7)       /* lcd0 d7 (lcd_data7) */
+		>;
+	};
+};
+
+/ {
+	lcd-ks0066u {
+		compatible = "lcd,ks0066u";
+
+		pinctrl-names = "default";
+		pinctrl-0 = <&lcd0_pins>;
+
+		gpios = <&gpio2 25 GPIO_ACTIVE_HIGH>, /* P8_30, enable */
+				<&gpio2 24 GPIO_ACTIVE_HIGH>, /* P8_28, rs */
+				<&gpio2 12 GPIO_ACTIVE_HIGH>, /* P8_39, D0 */
+				<&gpio2 10 GPIO_ACTIVE_HIGH>, /* P8_41, D1 */
+				<&gpio2  8 GPIO_ACTIVE_HIGH>, /* P8_43, D2 */
+				<&gpio2  6 GPIO_ACTIVE_HIGH>, /* P8_45, D3 */
+				<&gpio2  7 GPIO_ACTIVE_HIGH>, /* P8_46, D4 */
+				<&gpio2  9 GPIO_ACTIVE_HIGH>, /* P8_44, D5 */
+				<&gpio2 11 GPIO_ACTIVE_HIGH>, /* P8_42, D6 */
+				<&gpio2 13 GPIO_ACTIVE_HIGH>; /* P8_40, D7 */
+
+		num-lines = <4>;
+		line-length = <20>;
+
+		welcome-message = "\n    Udyni Vacuum\n     Controller";
+
+		status = "okay";
+	};
+};
