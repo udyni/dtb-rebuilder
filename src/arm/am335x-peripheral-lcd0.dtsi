@@ -46,7 +46,7 @@
 		num-lines = <4>;
 		line-length = <20>;
 
-		welcome-message = "\n    Udyni Vacuum\n     Controller";
+		welcome-message = "\n    Udyni Laser\n     Interlock";
 
 		status = "okay";
 	};

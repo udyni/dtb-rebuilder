@@ -46,6 +46,57 @@
 };
 
 
+#include <dt-bindings/board/am335x-bbw-bbb-base.h>
+/* Configuration of leds and buzzer */
+&am33xx_pinmux {
+	buzzer_pins: pinmux_buzzer_pins {
+		pinctrl-single,pins = <
+			BONE_P9_42A (PIN_OUTPUT | MUX_MODE7)
+			BONE_P9_42B (PIN_INPUT | MUX_MODE7) /* Pin P9_42 is connected to two pads. Disable the second one by setting it to input */
+		>;
+	};
+
+	gprelay_pins: pinmux_gprelay_pins {
+		pinctrl-single,pins = <
+			BONE_P8_07 (PIN_OUTPUT | MUX_MODE7)  /* Relay 01 */
+			BONE_P8_09 (PIN_INPUT  | MUX_MODE7)
+			BONE_P8_11 (PIN_OUTPUT | MUX_MODE7)  /* Relay 02 */
+			BONE_P8_13 (PIN_INPUT  | MUX_MODE7)
+			BONE_P8_15 (PIN_OUTPUT | MUX_MODE7)  /* Relay 03 */
+			BONE_P8_17 (PIN_INPUT  | MUX_MODE7)
+			BONE_P8_19 (PIN_OUTPUT | MUX_MODE7)  /* Relay 04 */
+			BONE_P8_27 (PIN_INPUT  | MUX_MODE7)
+			BONE_P8_08 (PIN_OUTPUT | MUX_MODE7)  /* Relay 05 */
+			BONE_P8_10 (PIN_INPUT  | MUX_MODE7)
+			BONE_P8_12 (PIN_OUTPUT | MUX_MODE7)  /* Relay 06 */
+			BONE_P8_14 (PIN_INPUT  | MUX_MODE7)
+			BONE_P8_16 (PIN_OUTPUT | MUX_MODE7)  /* Relay 07 */
+			BONE_P8_18 (PIN_INPUT  | MUX_MODE7)
+			BONE_P8_26 (PIN_OUTPUT | MUX_MODE7)  /* Relay 08 */
+			BONE_P8_29 (PIN_INPUT  | MUX_MODE7)
+		>;
+	};
+
+	interlock_pins: pinmux_interlock_pins {
+		pinctrl-single,pins = <
+			BONE_P9_17 (PIN_OUTPUT | MUX_MODE7) /* Interrupt command controlled by the Beaglebone */
+			BONE_P9_15 (PIN_INPUT  | MUX_MODE7) /* Check of interlock status 1 */
+			BONE_P9_18 (PIN_INPUT  | MUX_MODE7) /* Check of interlock status 2 */
+			BONE_P9_16 (PIN_INPUT  | MUX_MODE7) /* Status of main interlock relays */
+			BONE_P9_27 (PIN_INPUT  | MUX_MODE7) /* Status of KEY1 : main key */
+			BONE_P9_28 (PIN_INPUT  | MUX_MODE7) /* Status of KEY2 : Beaglebone disable */
+			BONE_P9_29 (PIN_INPUT  | MUX_MODE7) /* Status of KEY3 : Cryo disable */
+		>;
+	};
+	
+	watchdog_pins: pinmux_watchdog_pins {
+		pinctrl-single,pins = <
+			BONE_P9_12 (PIN_OUTPUT | MUX_MODE7) /* Enable hardware watchdog */
+			BONE_P9_14 (PIN_OUTPUT | MUX_MODE7) /* Watchdog input */
+		>;
+	};
+};
+
 /* Include serial port configuration */
 #include "am335x-bone-pinmux-ttyS1.dtsi"
 #include "am335x-bone-pinmux-ttyS2.dtsi"
