@@ -39,6 +39,8 @@
 			BONE_P9_24 (PIN_OUTPUT_PULLDOWN | MUX_MODE0)
 			/* P9_26: uart1_rxd.uart1_rxd */
 			BONE_P9_26 (PIN_INPUT_PULLUP | MUX_MODE0)
+			/* gpio3_21 */
+			BONE_P9_25 (PIN_OUTPUT_PULLDOWN | MUX_MODE7)
 		>;
 	};
 };

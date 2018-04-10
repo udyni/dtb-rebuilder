@@ -282,54 +282,56 @@
 	};
 };
 
-&i2c2 {
-	pinctrl-names = "default";
-	//pinctrl-0 = <&i2c2_pins>;
-	pinctrl-0 = <>;
+// NOTE: disable i2c2 as the default pins are used for UART1 CTS/RTS
+//&i2c2 {
+//	pinctrl-names = "default";
+//	//pinctrl-0 = <&i2c2_pins>;
+//      pinctrl-0 = <>;
+// 
+//	status = "okay";
+//	clock-frequency = <100000>;
 
-	status = "okay";
-	clock-frequency = <100000>;
-
-	cape_eeprom0: cape_eeprom0@54 {
-		compatible = "at,24c256";
-		reg = <0x54>;
-		#address-cells = <1>;
-		#size-cells = <1>;
-		cape0_data: cape_data@0 {
-			reg = <0 0x100>;
-		};
-	};
-
-	cape_eeprom1: cape_eeprom1@55 {
-		compatible = "at,24c256";
-		reg = <0x55>;
-		#address-cells = <1>;
-		#size-cells = <1>;
-		cape1_data: cape_data@0 {
-			reg = <0 0x100>;
-		};
-	};
-
-	cape_eeprom2: cape_eeprom2@56 {
-		compatible = "at,24c256";
-		reg = <0x56>;
-		#address-cells = <1>;
-		#size-cells = <1>;
-		cape2_data: cape_data@0 {
-			reg = <0 0x100>;
-		};
-	};
-
-	cape_eeprom3: cape_eeprom3@57 {
-		compatible = "at,24c256";
-		reg = <0x57>;
-		#address-cells = <1>;
-		#size-cells = <1>;
-		cape3_data: cape_data@0 {
-			reg = <0 0x100>;
-		};
-	};
-};
+// NOTE: disable cape manager as it conflicts with the static DTB
+// 	cape_eeprom0: cape_eeprom0@54 {
+// 		compatible = "at,24c256";
+// 		reg = <0x54>;
+// 		#address-cells = <1>;
+// 		#size-cells = <1>;
+// 		cape0_data: cape_data@0 {
+// 			reg = <0 0x100>;
+// 		};
+// 	};
+// 
+// 	cape_eeprom1: cape_eeprom1@55 {
+// 		compatible = "at,24c256";
+// 		reg = <0x55>;
+// 		#address-cells = <1>;
+// 		#size-cells = <1>;
+// 		cape1_data: cape_data@0 {
+// 			reg = <0 0x100>;
+// 		};
+// 	};
+// 
+// 	cape_eeprom2: cape_eeprom2@56 {
+// 		compatible = "at,24c256";
+// 		reg = <0x56>;
+// 		#address-cells = <1>;
+// 		#size-cells = <1>;
+// 		cape2_data: cape_data@0 {
+// 			reg = <0 0x100>;
+// 		};
+// 	};
+// 
+// 	cape_eeprom3: cape_eeprom3@57 {
+// 		compatible = "at,24c256";
+// 		reg = <0x57>;
+// 		#address-cells = <1>;
+// 		#size-cells = <1>;
+// 		cape3_data: cape_data@0 {
+// 			reg = <0 0x100>;
+// 		};
+// 	};
+//;
 
 
 /include/ "tps65217.dtsi"
@@ -461,102 +463,104 @@
 	ti,scale-data-fw = "am335x-bone-scale-data.bin";
 };
 
-//&pruss_soc_bus {
-//	status = "okay";
-//
-//	pruss: pruss@4a300000 {
-//		status = "okay";
-//
-//		pru0: pru@4a334000 {
-//			status = "okay";
-//		};
-//
-//		pru1: pru@4a338000 {
-//			status = "okay";
-//		};
-//	};
-//};
+// NOTE: disable PRU as not used
+// &pruss_soc_bus {
+// 	status = "okay";
+// 
+// 	pruss: pruss@4a300000 {
+// 		status = "okay";
+// 
+// 		pru0: pru@4a334000 {
+// 			status = "okay";
+// 		};
+// 
+// 		pru1: pru@4a338000 {
+// 			status = "okay";
+// 		};
+// 	};
+// };
 
+// NOTE: disable cape manager as it conflicts with the static DTB
 /* the cape manager */
-/ {
-	bone_capemgr {
-		compatible = "ti,bone-capemgr";
-		status = "okay";
+// / {
+// 	bone_capemgr {
+// 		compatible = "ti,bone-capemgr";
+// 		status = "okay";
+// 
+// 		nvmem-cells = <&baseboard_data &cape0_data &cape1_data &cape2_data &cape3_data>;
+// 		nvmem-cell-names = "baseboard", "slot0", "slot1", "slot2", "slot3";
+// 		#slots = <4>;
+// 
+// 		/* map board revisions to compatible definitions */
+// 		baseboardmaps {
+// 			baseboard_beaglebone: board@0 {
+// 				board-name = "A335BONE";
+// 				compatible-name = "ti,beaglebone";
+// 			};
+// 
+// 			baseboard_beaglebone_black: board@1 {
+// 				board-name = "A335BNLT";
+// 				compatible-name = "ti,beaglebone-black";
+// 			};
+// 		};
+// 	};
+// };
 
-		nvmem-cells = <&baseboard_data &cape0_data &cape1_data &cape2_data &cape3_data>;
-		nvmem-cell-names = "baseboard", "slot0", "slot1", "slot2", "slot3";
-		#slots = <4>;
-
-		/* map board revisions to compatible definitions */
-		baseboardmaps {
-			baseboard_beaglebone: board@0 {
-				board-name = "A335BONE";
-				compatible-name = "ti,beaglebone";
-			};
-
-			baseboard_beaglebone_black: board@1 {
-				board-name = "A335BNLT";
-				compatible-name = "ti,beaglebone-black";
-			};
-		};
-	};
-};
-
-&ocp {
-	/* P9_19 (ZCZ ball D17) i2c */
-	P9_19_pinmux {
-		compatible = "bone-pinmux-helper";
-		status = "okay";
-		pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "gpio_input", "spi_cs", "can", "i2c", "pru_uart", "timer";
-		pinctrl-0 = <&P9_19_default_pin>;
-		pinctrl-1 = <&P9_19_gpio_pin>;
-		pinctrl-2 = <&P9_19_gpio_pu_pin>;
-		pinctrl-3 = <&P9_19_gpio_pd_pin>;
-		pinctrl-4 = <&P9_19_gpio_input_pin>;
-		pinctrl-5 = <&P9_19_spi_cs_pin>;
-		pinctrl-6 = <&P9_19_can_pin>;
-		pinctrl-7 = <&P9_19_i2c_pin>;
-		pinctrl-8 = <&P9_19_pru_uart_pin>;
-		pinctrl-9 = <&P9_19_timer_pin>;
-	};
-
-	/* P9_20 (ZCZ ball D18) i2c */
-	P9_20_pinmux {
-		compatible = "bone-pinmux-helper";
-		status = "okay";
-		pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "gpio_input", "spi_cs", "can", "i2c", "pru_uart", "timer";
-		pinctrl-0 = <&P9_20_default_pin>;
-		pinctrl-1 = <&P9_20_gpio_pin>;
-		pinctrl-2 = <&P9_20_gpio_pu_pin>;
-		pinctrl-3 = <&P9_20_gpio_pd_pin>;
-		pinctrl-4 = <&P9_20_gpio_input_pin>;
-		pinctrl-5 = <&P9_20_spi_cs_pin>;
-		pinctrl-6 = <&P9_20_can_pin>;
-		pinctrl-7 = <&P9_20_i2c_pin>;
-		pinctrl-8 = <&P9_20_pru_uart_pin>;
-		pinctrl-9 = <&P9_20_timer_pin>;
-	};
-
-
-	cape-universal {
-		compatible = "gpio-of-helper";
-		status = "okay";
-		pinctrl-names = "default";
-		pinctrl-0 = <>;
-
-		P9_19 {
-			gpio-name = "P9_19";
-			gpio = <&gpio0 13 0>;
-			input;
-			dir-changeable;
-		};
-
-		P9_20 {
-			gpio-name = "P9_20";
-			gpio = <&gpio0 12 0>;
-			input;
-			dir-changeable;
-		};
-
-	};
-};
+// &ocp {
+// 	/* P9_19 (ZCZ ball D17) i2c */
+// 	P9_19_pinmux {
+// 		compatible = "bone-pinmux-helper";
+// 		status = "okay";
+// 		pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "gpio_input", "spi_cs", "can", "i2c", "pru_uart", "timer";
+// 		pinctrl-0 = <&P9_19_default_pin>;
+// 		pinctrl-1 = <&P9_19_gpio_pin>;
+// 		pinctrl-2 = <&P9_19_gpio_pu_pin>;
+// 		pinctrl-3 = <&P9_19_gpio_pd_pin>;
+// 		pinctrl-4 = <&P9_19_gpio_input_pin>;
+// 		pinctrl-5 = <&P9_19_spi_cs_pin>;
+// 		pinctrl-6 = <&P9_19_can_pin>;
+// 		pinctrl-7 = <&P9_19_i2c_pin>;
+// 		pinctrl-8 = <&P9_19_pru_uart_pin>;
+// 		pinctrl-9 = <&P9_19_timer_pin>;
+// 	};
+// 
+// 	/* P9_20 (ZCZ ball D18) i2c */
+// 	P9_20_pinmux {
+// 		compatible = "bone-pinmux-helper";
+// 		status = "okay";
+// 		pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "gpio_input", "spi_cs", "can", "i2c", "pru_uart", "timer";
+// 		pinctrl-0 = <&P9_20_default_pin>;
+// 		pinctrl-1 = <&P9_20_gpio_pin>;
+// 		pinctrl-2 = <&P9_20_gpio_pu_pin>;
+// 		pinctrl-3 = <&P9_20_gpio_pd_pin>;
+// 		pinctrl-4 = <&P9_20_gpio_input_pin>;
+// 		pinctrl-5 = <&P9_20_spi_cs_pin>;
+// 		pinctrl-6 = <&P9_20_can_pin>;
+// 		pinctrl-7 = <&P9_20_i2c_pin>;
+// 		pinctrl-8 = <&P9_20_pru_uart_pin>;
+// 		pinctrl-9 = <&P9_20_timer_pin>;
+// 	};
+// 
+// 
+// 	cape-universal {
+// 		compatible = "gpio-of-helper";
+// 		status = "okay";
+// 		pinctrl-names = "default";
+// 		pinctrl-0 = <>;
+// 
+// 		P9_19 {
+// 			gpio-name = "P9_19";
+// 			gpio = <&gpio0 13 0>;
+// 			input;
+// 			dir-changeable;
+// 		};
+// 
+// 		P9_20 {
+// 			gpio-name = "P9_20";
+// 			gpio = <&gpio0 12 0>;
+// 			input;
+// 			dir-changeable;
+// 		};
+// 
+// 	};
+// };
