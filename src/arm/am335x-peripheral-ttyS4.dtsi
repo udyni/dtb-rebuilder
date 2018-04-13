@@ -9,7 +9,8 @@
 &uart4 {
 	pinctrl-names = "default";
 
-	rs485-rts-delay = <0 0>; 
+	rs485-rts-delay = <0 0>;
+	rs485-rts-active-high;
 
 	/* GPIO1 pin 16 for data direction */
 	rts-gpio = <&gpio1 16 GPIO_ACTIVE_HIGH>;
