@@ -55,9 +55,9 @@
 &am33xx_pinmux {
 	gpleds_pins: pinmux_gpleds_pins {
 		pinctrl-single,pins = <
-			BONE_P8_31 (PIN_OUTPUT | MUX_MODE7)
-			BONE_P8_41 (PIN_OUTPUT | MUX_MODE7)
-			BONE_P8_42 (PIN_OUTPUT | MUX_MODE7)
+			BONE_P9_31 (PIN_OUTPUT | MUX_MODE7)
+			BONE_P9_41 (PIN_OUTPUT | MUX_MODE7)
+			BONE_P9_42 (PIN_OUTPUT | MUX_MODE7)
 		>;
 	};
 };
